@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <h1>🎮 Resource Tracker</h1>
+
+    <div class="game-bar">
+        <select id="gameSelect"></select>
+
+        <button id="addGameBtn" title="게임 추가">
+            +
+        </button>
+    </div>
+</header>
+
+<main>
+
+    <section class="card">
+
+        <div class="title-row">
+            <h2>재화 입력</h2>
+
+            <button id="addResourceBtn">
+                + 재화
+            </button>
+        </div>
+
+        <div id="resourceContainer">
+
+        </div>
+
+        <button id="saveRecordBtn" class="mainButton">
+            한 판 기록하기
+        </button>
+
+    </section>
+
+    <section class="card">
+
+        <h2>총 재화</h2>
+
+        <div id="totalContainer">
+
+        </div>
+
+    </section>
+
+    <section class="card">
+
+        <h2>최근 기록</h2>
+
+        <div id="historyContainer">
+
+            아직 기록이 없습니다.
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="app.js"></script>
+
+</body>
+</html>
+
+
+
