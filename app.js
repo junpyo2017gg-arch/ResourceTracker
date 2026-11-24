@@ -1,3 +1,24 @@
+const modal=document.getElementById("modal");
+const modalTitle=document.getElementById("modalTitle");
+const modalMessage=document.getElementById("modalMessage");
+const modalConfirm=document.getElementById("modalConfirm");
+const modalCancel=document.getElementById("modalCancel");
+
+function customConfirm(title,message,onConfirm){
+    modalTitle.textContent=title;
+    modalMessage.textContent=message;
+
+    modal.classList.remove("hidden");
+
+    modalConfirm.onclick=()=>{
+        modal.classList.add("hidden");
+        onConfirm();
+    };
+
+    modalCancel.onclick=()=>{
+        modal.classList.add("hidden");
+    };
+}
 let inputValues = {};// =====================================
 // Resource Tracker v0.1
 // app.js (1/2)
@@ -355,29 +376,26 @@ load();
 
 render();
 function deleteRecord(index) {
+    customConfirm(
+        "기록 삭제",
+        "이 기록을 삭제하시겠습니까?",
+        () => {
+            const record = game().history[index];
 
-    if (!confirm("이 기록을 삭제하시겠습니까?")) {
-        return;
-    }
+            record.items.forEach(item => {
+                const resource = game().resources.find(r => r.name === item.name);
 
-    const record = game().history[index];
+                if (resource) {
+                    resource.total -= item.value;
+                }
+            });
 
-    record.items.forEach(item => {
+            game().history.splice(index, 1);
 
-        const resource = game().resources.find(r => r.name === item.name);
-
-        if (resource) {
-            resource.total -= item.value;
+            save();
+            render();
         }
-
-    });
-
-    game().history.splice(index, 1);
-
-    save();
-
-    render();
-
+    );
       }
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
